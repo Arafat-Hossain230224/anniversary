@@ -286,6 +286,48 @@ footer{padding:3rem 1rem 4rem;text-align:center;position:relative;z-index:1}foot
 /* living background */
 #bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .bgf{position:absolute;opacity:0;will-change:transform,opacity}
+.letter{max-width:780px;width:100%;padding:3rem 2.8rem;border-radius:30px}
+#ltxt{font-size:1.75rem}
+@media (max-width:560px){.letter{padding:2.2rem 1.5rem}#ltxt{font-size:1.5rem}}
+/* gorgeous gate */
+.cur{background:linear-gradient(180deg,#0d0a1e99 0,transparent 22%,transparent 72%,#0d0a1ecc 100%),repeating-linear-gradient(90deg,#2c1066 0,#4a2396 22px,#7a4fd6 38px,#4a2396 54px,#2c1066 76px)}
+.cur.l{box-shadow:inset -5px 0 0 #f0c75e,inset -9px 0 0 #a97e22,12px 0 50px #000b}
+.cur.r{box-shadow:inset 5px 0 0 #f0c75e,inset 9px 0 0 #a97e22,-12px 0 50px #000b}
+#gate.s1 .l{box-shadow:inset 0 -5px 0 #f0c75e,inset 0 -9px 0 #a97e22,0 12px 50px #000b}
+#gate.s1 .r{box-shadow:inset 0 5px 0 #f0c75e,inset 0 9px 0 #a97e22,0 -12px 50px #000b}
+.val{position:absolute;left:0;top:0;width:100%;height:84px;z-index:2;filter:drop-shadow(0 10px 14px #000a);transition:transform 1s ease-in;pointer-events:none}
+#gate.open .val{transform:translateY(-125%)}
+#gt{position:absolute;z-index:3;left:50%;top:calc(50% - 222px);transform:translateX(-50%);width:min(94vw,560px);text-align:center;pointer-events:none;transition:opacity .5s}
+#gt small{display:block;font:500 .74rem 'DM Sans',sans-serif;letter-spacing:.38em;text-transform:uppercase;color:#f6d98a;margin-bottom:.6rem;text-shadow:0 2px 10px #000a}
+#gt h1{font:italic 300 clamp(2.1rem,9.5vw,3.6rem)/1.05 'Fraunces',serif;background:linear-gradient(90deg,#ffe9a8,#ffc4e1 50%,#ffe9a8);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 14px #000a)}
+#gt h1 i{color:#ff8fc4;-webkit-text-fill-color:#ff8fc4;font-size:.8em}
+#gf{position:absolute;z-index:3;left:0;right:0;bottom:5vh;margin:0;text-align:center;font:italic 300 1rem 'Fraunces',serif;color:#f6d98a;letter-spacing:.08em;pointer-events:none;transition:opacity .5s}
+#gate.open #gt,#gate.open #gf{opacity:0}
+#seal{position:relative;z-index:3;width:150px;height:150px;border-radius:50%;border:0;cursor:pointer;color:#fff;font:italic 300 2.3rem 'Fraunces',serif;text-shadow:0 2px 0 #7a1244,0 -1px 0 #ffffff77;background:radial-gradient(circle at 34% 26%,#ffb3d6,#ee4f94 42%,#a31f5e 100%);box-shadow:0 0 0 7px #ffffff1f,0 0 0 13px #f0c75e66,inset 0 -10px 20px #00000066,inset 0 10px 16px #ffffff66,0 22px 50px #000b,0 0 80px #ec6aa9bb;animation:sealp 2.6s ease-in-out infinite}
+#seal::before{content:"";position:absolute;inset:14px;border-radius:50%;border:2px solid #ffffff66;box-shadow:inset 0 3px 8px #0005,0 1px 0 #ffffff44;pointer-events:none}
+#seal::after{content:"";position:absolute;inset:-26px;border-radius:50%;border:2px dashed #f0c75e;opacity:.85;animation:spin 20s linear infinite;pointer-events:none}
+@keyframes sealp{50%{transform:scale(1.045)}}@keyframes spin{to{transform:rotate(360deg)}}
+#seal:hover{animation-play-state:paused;transform:scale(1.08)}
+#who{top:calc(50% + 128px);z-index:3}
+#who .in{border-radius:99px;background:#ffffff1f;border:1px solid #f0c75e99;padding:.95rem 1.4rem;font:italic 400 1.2rem 'Fraunces',serif;color:#fff;box-shadow:inset 0 0 22px #ffffff14,0 8px 24px #0008}
+#who .in::placeholder{color:#fff9}
+#who .in:focus{outline:0;box-shadow:0 0 0 3px #f0c75e77,0 0 34px #ec6aa977}
+#who .in.bad{border-color:#ff6b8b}
+#who #tap{font:500 .72rem 'DM Sans',sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#f6d98a}
+.gs{position:absolute;z-index:1;border-radius:50%;pointer-events:none;box-shadow:0 0 7px #fff9;animation:tw 2.4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1.25)}}
+.gh{position:absolute;bottom:-6%;z-index:1;pointer-events:none;animation:gup 10s linear infinite}
+@keyframes gup{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.85}100%{transform:translateY(-115vh) rotate(40deg);opacity:0}}
+@media (max-height:620px){#gt{top:calc(50% - 190px)}#gt small{display:none}}
+/* gate readability: a soft dark glow hides the gold seam and puts the text in front */
+#gcard{position:absolute;z-index:2;left:50%;top:50%;width:min(96vw,620px);height:min(90vh,640px);transform:translate(-50%,-50%);pointer-events:none;transition:opacity .5s;background:radial-gradient(ellipse at center,rgba(13,10,30,.93) 0,rgba(13,10,30,.85) 48%,rgba(13,10,30,.4) 70%,rgba(13,10,30,0) 76%);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);-webkit-mask-image:radial-gradient(ellipse at center,#000 52%,transparent 76%);mask-image:radial-gradient(ellipse at center,#000 52%,transparent 76%)}
+#gate.open #gcard{opacity:0}
+#gt small{font-size:.82rem;color:#ffe9a8;text-shadow:0 2px 12px #000,0 0 3px #000}
+#gt h1{filter:drop-shadow(0 3px 10px #000) drop-shadow(0 0 2px #0008)}
+#who .in{background:rgba(13,10,30,.7);border-color:#f0c75e;color:#fff;font-size:1.25rem}
+#who .in::placeholder{color:#ffffffcc}
+#who #tap{font-size:.82rem;color:#ffe9a8;text-shadow:0 2px 12px #000,0 0 3px #000}
+#gf{width:max-content;max-width:92vw;left:50%;right:auto;transform:translateX(-50%);padding:.45rem 1.3rem;border-radius:99px;background:rgba(13,10,30,.72);border:1px solid #f0c75e88;color:#ffe9a8;text-shadow:0 1px 8px #000}
 /* Florals */
 section{position:relative;overflow:hidden}
 section>*:not(.fx){position:relative;z-index:1}
@@ -301,8 +343,12 @@ section>*:not(.fx){position:relative;z-index:1}
 
 <div id="gate">
   <div class="cur l"></div><div class="cur r"></div>
+  <svg class="val" viewBox="0 0 800 92" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="vg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a1160"/><stop offset="1" stop-color="#6a3cc4"/></linearGradient></defs><path d="M0 0H800V38Q760 92 720 38Q680 92 640 38Q600 92 560 38Q520 92 480 38Q440 92 400 38Q360 92 320 38Q280 92 240 38Q200 92 160 38Q120 92 80 38Q40 92 0 38Z" fill="url(#vg)" stroke="#f0c75e" stroke-width="3" vector-effect="non-scaling-stroke"/></svg>
+  <div id="gcard"></div>
+  <div id="gt"><small>a little surprise for you</small><h1>Arafat <i>&amp;</i> Naznin</h1></div>
   <button id="seal" aria-label="Open">A&amp;N</button>
-  <div id="who"><input id="nm" class="in" maxlength="40" placeholder="Enter your name" autocomplete="off" aria-label="Your name"><p id="tap">Then tap the seal to begin</p></div>
+  <div id="who"><input id="nm" class="in" maxlength="40" placeholder="Enter your name" autocomplete="off" aria-label="Your name"><p id="tap">✦ then tap the seal ✦</p></div>
+  <p id="gf">15 November 2025 → forever</p>
 </div>
 <button id="mu" aria-label="Music on or off">♪</button>
 <audio id="au" loop src="music.mp3"></audio>
@@ -422,7 +468,7 @@ const C={
     {d:"15 November 2025",e:"💖",t:"You said yes",p:"The best answer I have ever heard.",big:1}
   ],
   photos:["photos/1.jpg","photos/2.jpg","photos/3.jpg","photos/4.jpg","photos/5.jpg","photos/6.jpg","photos/7.jpg"],
-  letter:"Dear Naznin, ❤️\n\nOne year ago, you became a part of my life in a way I never imagined. And somehow, that one decision made my world a little softer, warmer, and so much more beautiful.\n\nBefore being lovers, we were friends. And honestly, that's one of my favorite things about us. I didn't just fall in love with a girl; I fell in love with my best friend, my favorite person, and someone with whom I can be completely myself.\n\nThank you for every little thing — every conversation, every laugh, every silly argument, every moment of understanding, and even the difficult days that taught us how to love each other better.\n\nI know we aren't perfect. We may misunderstand each other sometimes, have disagreements, or have days when things don't go as planned. But I never want us to stop choosing each other.\n\nI don't know exactly what the future holds for us, but I know one thing: I want you in it. I want more birthdays, more anniversaries, more random conversations, more adventures, more laughter, and a million little memories with you.\n\nIf I could go back to the beginning and choose again, I'd still choose you. Without hesitation. Every single time.\n\nThank you for being my girl, babaaaaaaaa. 🥹💗\n\nHappy First Anniversary, my love. Here's to our first year and all the beautiful years waiting for us.\n\nI love you more than these words could ever explain.\n\nForever yours,\nCoco ❤️",
+  letter:"Dear Naznin, ❤️\n\nOne year ago, you became a part of my life in a way I never imagined. And somehow, that beautiful beginning made my world softer, warmer, and so much more beautiful.\n\nBefore being lovers, we were friends. And honestly, that's one of my favorite things about us. I didn't just fall in love with a girl; I fell in love with my best friend, my favorite person, and someone with whom I can be completely myself.\n\nThank you for every little thing — every conversation, every laugh, every silly moment, every beautiful memory, and every little reason you give me to smile. You have brought so much happiness into my life, and I hope you know how incredibly special you are to me.\n\nI want to keep making memories with you — more birthdays, more anniversaries, more random conversations, more adventures, more laughter, more hugs, more kisses, and a million little moments that we'll remember forever.\n\nWhen I imagine my future, I find myself wishing for you in every beautiful chapter of it. I want to see you achieve your dreams, celebrate your happiness, explore the world with you, and experience all the little joys life has to offer.\n\nIf I could go back to the beginning and choose again, I'd still choose you. Without hesitation. Every single time.\n\nThank you for being my girl, babaaaaaaaa. 🥹💗\n\nHappy First Anniversary, my love. Here's to our first year, to every beautiful memory we've made, and to a lifetime of happiness waiting for us.\n\nI love you more than these words could ever explain.\n\nForever yours,\nCoco ❤️",
   reasons:[
     ["Your smile","It fixes my worst days. 😊"],
     ["Your care","You notice things nobody else does. 🤗"],
@@ -462,7 +508,7 @@ $('nm').onkeydown=e=>{if(e.key==='Enter')$('seal').click()};
 $('seal').onclick=()=>{
   const nm=$('nm').value.trim();
   if(!nm){const i=$('nm');i.classList.add('bad');i.placeholder='Please type your name first';i.focus();setTimeout(()=>i.classList.remove('bad'),500);return}
-  ME.name=nm;ME.her=isHer(nm);visits();
+  ME.name=nm;ME.her=isHer(nm);scrollTo(0,0);visits();
   $('gate').classList.add('open');gateOpen=true;if(pend)setTimeout(doPop,2300);document.body.classList.remove('lock');
   const a=$('au');a.volume=.5;a.play().catch(()=>{});
   setTimeout(()=>$('gate').style.display='none',2600);
@@ -518,9 +564,12 @@ let typed=false;
 new IntersectionObserver((es,o)=>{if(es[0].isIntersecting&&!typed){typed=true;o.disconnect();
   const t=$('ltxt'),L=C.letter,pen=document.createElement('span');t.textContent='';pen.className='pen';
   pen.innerHTML='<img alt="" src="'+HAND+'">';
-  t.appendChild(pen);let i=0;
+  t.appendChild(pen);let i=0,mine=false;
+  // the page follows the pen down the card; if the reader scrolls themselves, it stops
+  ['wheel','touchstart','keydown','mousedown'].forEach(ev=>addEventListener(ev,()=>{mine=true},{once:true,passive:true}));
   (function w(){if(i>=L.length){pen.classList.add('off');setTimeout(()=>pen.remove(),1200);return}
    const c=document.createElement('span');c.className='ch';c.textContent=L[i++];t.insertBefore(c,pen);
+   if(!mine&&!rm){const r=pen.getBoundingClientRect(),lim=innerHeight*.68;if(r.top>lim)scrollBy({top:Math.min(r.top-lim,26),behavior:'instant'})}
    setTimeout(w,(/\s/.test(c.textContent)?1.4:1)*Math.max(14,Math.min(55,42000/L.length))*(.7+Math.random()*.6))})();}
 },{threshold:.5}).observe($('ltxt').parentNode);
 
@@ -623,10 +672,10 @@ document.querySelectorAll('.en').forEach(b=>b.onclick=()=>{b.classList.toggle('o
 // footer: share + visits (counted on this device)
 $('sh').onclick=async()=>{try{if(navigator.share)await navigator.share({title:document.title,text:'Our first year, in one page',url:location.href});
   else{await navigator.clipboard.writeText(location.href);$('sh').textContent='Link copied'}}catch(e){}};
-async function visits(){let n=0;
+async function visits(inc=true){let n=0;
  try{
-  if(DB){if(ME.her&&!TEST)await dbPush('visits',{ts:Date.now()});n=Object.keys(await dbGet('visits','?shallow=true')||{}).length}
-  else if(ME.her){n=(+localStorage.getItem('visits')||0)+(TEST?0:1);if(!TEST)localStorage.setItem('visits',n)}
+  if(DB){if(ME.her&&!TEST&&inc)await dbPush('visits',{ts:Date.now()});n=Object.keys(await dbGet('visits','?shallow=true')||{}).length}
+  else if(ME.her){n=(+localStorage.getItem('visits')||0)+(TEST||!inc?0:1);if(!TEST&&inc)localStorage.setItem('visits',n)}
   else n=+localStorage.getItem('visits')||0;
  }catch(e){}
  $('vc').textContent=n?(ME.her?`You've been here ${n} time${n>1?'s':''} 💜`:`Naznin has visited ${n} time${n>1?'s':''} 💜`):''}
@@ -735,6 +784,18 @@ document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest
  for(let i=0;i<6;i++)setTimeout(()=>spawn(rn(0,innerWidth),rn(innerHeight*.2,innerHeight),0,i%2?'h':'b'),i*250);
  tick();
 })();
+// gate atmosphere: glitter, rising hearts, a few butterflies
+(function(){const g=$('gate');if(!g)return;let h='';
+ for(let i=0;i<46;i++){const z=rn(2,5).toFixed(1);h+=`<i class="gs" style="left:${rn(0,100).toFixed(1)}%;top:${rn(0,100).toFixed(1)}%;width:${z}px;height:${z}px;background:${['#fff','#ffe9a8','#ffc4e1','#d4c2ff'][i%4]};animation-delay:-${rn(0,4).toFixed(1)}s;animation-duration:${rn(1.6,3.8).toFixed(1)}s"></i>`}
+ for(let i=0;i<10;i++)h+=`<span class="gh" style="left:${rn(2,96).toFixed(1)}%;font-size:${rn(.9,1.9).toFixed(1)}rem;color:${['#ff8fc4','#ffc4e1','#d4c2ff','#ffe9a8'][i%4]};animation-duration:${rn(8,15).toFixed(1)}s;animation-delay:-${rn(0,12).toFixed(1)}s">♥</span>`;
+ g.insertAdjacentHTML('beforeend',h);
+ for(let k=0;k<5;k++){const e=document.createElement('div'),w=Math.round(rn(34,72));e.className='fx bf';
+  let v=`z-index:1;left:${rn(4,88)}%;top:${rn(6,86)}%;width:${w}px;--d:${rn(14,24)}s;--dl:-${rn(0,18)}s;--f:${rn(.25,.45)}s;`;
+  for(let j=0;j<=4;j++)v+=`--x${j}:${rn(-30,30)}vw;--y${j}:${rn(-24,24)}vh;--r${j}:${rn(-28,28)}deg;`;
+  e.style.cssText=v;e.innerHTML=bfSVG(BC[k%BC.length]);g.appendChild(e)}
+})();
+// refresh: the name gate comes back every time, and the page always starts from the first section
+(function(){if('scrollRestoration' in history)history.scrollRestoration='manual';scrollTo(0,0);addEventListener('pageshow',()=>scrollTo(0,0))})();
 </script>
 </body>
 </html>
