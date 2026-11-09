@@ -328,6 +328,25 @@ footer{padding:3rem 1rem 4rem;text-align:center;position:relative;z-index:1}foot
 #who .in::placeholder{color:#ffffffcc}
 #who #tap{font-size:.82rem;color:#ffe9a8;text-shadow:0 2px 12px #000,0 0 3px #000}
 #gf{width:max-content;max-width:92vw;left:50%;right:auto;transform:translateX(-50%);padding:.45rem 1.3rem;border-radius:99px;background:rgba(13,10,30,.72);border:1px solid #f0c75e88;color:#ffe9a8;text-shadow:0 1px 8px #000}
+/* styled promises: every block its own colour, shine, bob and emoji */
+.pm{position:relative;overflow:hidden;color:var(--c,#fff);background:linear-gradient(135deg,var(--a,#a77bff),var(--b,#6c4bd8));border:1px solid #ffffff66;backdrop-filter:none;box-shadow:0 12px 28px #0d0a1e66;box-shadow:0 12px 28px color-mix(in srgb,var(--b,#6c4bd8) 55%,transparent);gap:.9rem}
+.pm p{color:inherit;font:400 1.2rem/1.4 'Fraunces',serif;position:relative;text-shadow:0 1px 8px #0002}
+.pm b{width:3.1rem;height:3.1rem;border-radius:50%;display:grid;place-items:center;background:#ffffff38;border:2px solid currentColor;color:inherit!important;font:italic 400 1.7rem/1 'Fraunces',serif;position:relative;min-width:0!important}
+.pm::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,#ffffff66 50%,transparent 65%);transform:translateX(-120%);pointer-events:none}
+.pe{flex:none;font-size:1.9rem;position:relative;filter:drop-shadow(0 2px 4px #0004);animation:pw 2.6s ease-in-out infinite alternate}
+@keyframes pw{to{transform:rotate(14deg) scale(1.18)}}
+.pm.in{animation:pbob 4.5s ease-in-out var(--dl,0s) infinite}
+.pm.in::before{animation:sweep2 6s linear var(--dl,0s) infinite}
+@keyframes pbob{50%{translate:0 -5px}}
+@keyframes sweep2{0%{transform:translateX(-120%)}25%,100%{transform:translateX(120%)}}
+.pm.in:nth-child(odd){transform:rotate(-1deg)!important}.pm.in:nth-child(even){transform:rotate(1deg)!important}
+.pm.in:hover{transform:scale(1.03) rotate(0)!important}
+@media (max-width:480px){.pm{width:95%;padding:.9rem 1rem}.pm p{font-size:1.1rem}}
+.vf{position:relative;width:min(100%,720px);border-radius:26px;overflow:hidden;border:2px solid #f0c75e99;background:#0d0a1e;box-shadow:0 20px 50px #0d0a1e99,0 0 50px #ec6aa933}
+.vf video{display:block;width:100%;aspect-ratio:16/9;background:#000;object-fit:contain}
+.vf iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.vph{display:none;position:absolute;inset:0;place-items:center;align-content:center;text-align:center;background:linear-gradient(135deg,#2c1066,#6a3cc4);font:italic 300 1.6rem 'Fraunces',serif;pointer-events:none}
+.vph.on{display:grid}.vph small{display:block;opacity:.75;font:500 .85rem 'DM Sans',sans-serif;margin-top:.5rem;letter-spacing:.08em}
 /* Florals */
 section{position:relative;overflow:hidden}
 section>*:not(.fx){position:relative;z-index:1}
@@ -437,6 +456,12 @@ section>*:not(.fx){position:relative;z-index:1}
   <div class="wl" id="wl"></div>
 </section>
 
+<section data-f="14">
+  <h2>Looking Back on Our 365 Days</h2>
+  <p style="margin:-1.2rem 0 1.6rem;opacity:.9">One year, one little film. Press play ▶</p>
+  <div class="vf" id="vf"><video id="vid" controls playsinline preload="metadata"></video><div class="vph" id="vph">Your video goes here<small>video/365days.mp4</small></div></div>
+</section>
+
 <section data-f="6">
   <h2>One last thing</h2>
   <button id="go">Open your surprise</button>
@@ -488,6 +513,7 @@ const C={
   scratch:"To begin with, I love you with a depth and passion that I have felt for no one else in this life. ❤️ And if that astonishes you, it astonishes me as well. 🥹💗\n\nYou are beautiful, giving, gentle, identically and deliciously feminine, irresistibly sexy, and wonderfully silly as well. 🌸💕✨\n\nI want nothing else in this life than to be with you — to listen to you and watch you, to admire your beautiful voice and your beauty, to argue with you, to laugh with you, to show you things and share things with you, and to explore your magnificent mind. ❤️🫶🏻🌷\n\nForever yours. 💍❤️",
   puzzle:"photos/couple.jpg",
   dreamPics:["dreams/1.jpg","dreams/2.jpg","dreams/3.jpg","dreams/4.jpg","dreams/5.jpg","dreams/6.jpg"],
+  video:"video/365days.mp4",   // your video file (or paste a YouTube link here)
   db:"https://my-wish-6b344-default-rtdb.asia-southeast1.firebasedatabase.app",   // Firebase Realtime Database URL
   final:"Happy 1st Anniversary, Naznin. Here's to forever."
 };
@@ -589,7 +615,8 @@ $('go').onclick=()=>{burst();if(!run){run=true;loop()}
   $('fin').textContent=C.final;$('fin').classList.add('show');$('inf').classList.add('show')};
 
 // promises
-$('pl').innerHTML=C.promises.map((t,i)=>`<div class="pm" style="--t:${['translateX(-110px)','translateX(110px)','translateY(-80px)','translateY(80px)','translate(-90px,-60px) rotate(-8deg)','translate(90px,-60px) rotate(8deg)','translate(-90px,60px) rotate(8deg)','translate(90px,60px) rotate(-8deg)','scale(.4)','perspective(600px) rotateX(80deg)','translateX(-110px) rotate(-12deg)','translateX(110px) rotate(12deg)'][i%12]}"><b>${i+1}</b><p>${t}</p></div>`).join('');
+const PA=[['#ff7eb3','#ff4f8b','#fff'],['#a77bff','#6c4bd8','#fff'],['#58b0ff','#3a6fe0','#fff'],['#ff9a8b','#ff5f87','#fff'],['#3fd9c9','#1f9aa8','#fff'],['#ffd86b','#ff9f43','#2a1450'],['#e86af0','#9b4bd8','#fff'],['#7ec8ff','#7a52d9','#fff'],['#ff8fa3','#ffb36b','#2a1450'],['#5fe3b4','#3a9be0','#103050'],['#c4a3ff','#ff8fc4','#2a1450'],['#ff4f8b','#58b0ff','#fff']],PE=['👂','🕊️','🌟','🎉','🫶','🌸','⏳','🤝','😄','🌈','💬','💍'];
+$('pl').innerHTML=C.promises.map((t,i)=>`<div class="pm" style="--t:${['translateX(-110px)','translateX(110px)','translateY(-80px)','translateY(80px)','translate(-90px,-60px) rotate(-8deg)','translate(90px,-60px) rotate(8deg)','translate(-90px,60px) rotate(8deg)','translate(90px,60px) rotate(-8deg)','scale(.4)','perspective(600px) rotateX(80deg)','translateX(-110px) rotate(-12deg)','translateX(110px) rotate(12deg)'][i%12]};--a:${PA[i%12][0]};--b:${PA[i%12][1]};--c:${PA[i%12][2]};--dl:-${(i*.7).toFixed(1)}s"><b>${i+1}</b><p>${t}</p><span class="pe" aria-hidden="true">${PE[i%12]}</span></div>`).join('');
 document.querySelectorAll('.pm').forEach(el=>io.observe(el));
 // dreams (ticks are remembered on this device)
 let tk={};try{tk=JSON.parse(localStorage.getItem('dreams')||'{}')}catch(e){}
@@ -727,6 +754,7 @@ F[10]=[['spk','top:8vh;left:7vw',20,0,GOLD],['hrt','top:12vh;right:7vw',30,12,P]
 F[11]=[['spk','top:10vh;right:8vw',22,0,W],['spk','bottom:14vh;left:7vw',18,0,GOLD],['wis','top:-2vh;left:6vw',90,0,V]];
 F[12]=[['hrt','top:7vh;left:6vw',34,-12,R],['spk','top:14vh;right:7vw',16,0,GOLD],['spr','bottom:0;left:-4vw',130,20,B]];
 F[13]=[['dai','top:6vh;right:6vw',70,0,W],['spk','top:16vh;left:7vw',18,0,GOLD],['rose','bottom:-6vh;right:-8vw',140,0,L]];
+F[14]=[['spk','top:8vh;left:7vw',20,0,GOLD],['hrt','top:10vh;right:8vw',32,12,P],['rose','top:-4vh;left:-9vw',150,0,L],['wis','top:-2vh;right:3vw',100,0,V],['spk','bottom:14vh;right:8vw',18,0,W],['spr','bottom:0;left:-4vw',130,20,B]];
 const X={2:vine('left')+vine('right'),3:lights()};
 document.querySelectorAll('body>section').forEach((el,i)=>el.insertAdjacentHTML('afterbegin',(X[i]||'')+(F[el.dataset.f??i]||[]).map(f=>fx(...f)).join('')));
 // Naznin = hibiscus: frames the letter from outside the text area
@@ -783,6 +811,16 @@ document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest
  function tick(){spawn(rn(0,innerWidth),rn(innerHeight*.15,innerHeight*1.05),0,Math.random()<.5?'h':'b');setTimeout(tick,rn(500,1100))}
  for(let i=0;i<6;i++)setTimeout(()=>spawn(rn(0,innerWidth),rn(innerHeight*.2,innerHeight),0,i%2?'h':'b'),i*250);
  tick();
+})();
+// 365 days video: your own file, or a YouTube link
+(function(){const f=$('vf'),v=$('vid'),u=(C.video||'').trim();
+ if(!u){$('vph').classList.add('on');return}
+ const yt=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
+ if(yt){f.innerHTML='<iframe src="https://www.youtube.com/embed/'+yt[1]+'?rel=0" title="Our 365 days" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>';return}
+ v.src=u+'#t=0.1';v.onerror=()=>$('vph').classList.add('on');
+ let res=false;
+ v.onplay=()=>{if(!au.paused){au.pause();res=true}const r=v.getBoundingClientRect();flutter(r.left+r.width/2,r.top+r.height/2)};
+ v.onpause=v.onended=()=>{if(res){au.play().catch(()=>{});res=false}};
 })();
 // gate atmosphere: glitter, rising hearts, a few butterflies
 (function(){const g=$('gate');if(!g)return;let h='';
